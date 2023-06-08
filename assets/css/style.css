@@ -1,0 +1,634 @@
+@font-face {
+    font-family: 'Barlow';
+    src: url(../fonts/Barlow/Barlow-Regular.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow';
+}
+
+.hidden {
+    display: none !important;
+}
+
+.hidden-animation {
+    transition: 0.25s;
+    opacity: 0;
+    z-index: -1;
+    user-select: none;
+}
+
+body {
+    background-color: #111228;
+    color: white;
+    overflow: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+}
+
+nav {
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: space-between;
+    width: 90px;
+    height: 900px;
+    border-right: 2px solid #2f326b;
+    background-color: #262754;
+}
+
+nav .btn {
+    position: relative;
+}
+
+
+nav #buttons-container .btn button {
+    background: transparent;
+    color: white;
+    padding: 20px;
+    font-size: 32px;
+    border: 2px solid #2f326b;
+    border-radius: 0;
+    width: 100%;
+    border-left: none;
+    border-top: none !important;
+    border-right: none;
+    cursor: pointer;
+}
+
+nav #buttons-container .btn button:active {
+    background-color: #2f326b;
+}
+
+nav #buttons-container .btn button.first {
+    border-top: 2px solid #2f326b !important;
+}
+nav #buttons-container .btn button.active i{
+    animation: rotate 0.5s infinite ease-in-out;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+nav .btn button:last-child {
+    border: none;
+}
+nav .btn span.title.font-size-s {
+    font-size: 16px !important;
+}
+
+nav .btn span.title.font-size-m {
+    font-size: 18px !important;
+}
+
+nav .btn span.title {
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 120px;
+    background: #2f326b;
+    padding: 5px 10px;
+    width: 120px;
+    height: 45px;
+    text-align: center;
+    font-size: 18px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+nav .btn span.title.active {
+    display: flex;
+    box-shadow: 3px 3px 8px #0c0f2a;
+}
+
+nav .btn span.title::before {
+    content: '';
+    position: absolute;
+    transform: rotate(45deg);
+    left: -10px;
+    z-index: -1;
+    background: #2f326b;
+    width: 30px;
+    height: 30px;
+}
+
+
+
+/* Main section */
+
+#main {
+    width: calc(100% - (5rem * 2) + 8px);
+    height: 100%;
+    min-height: 900px;
+    position: relative;
+    left: 10rem;
+}
+#main > div {
+    margin: 15px;
+}
+
+#main #inputs {
+    display: flex;
+    justify-content: center;
+}
+
+#main #inputs input {
+    text-align: center;
+    background: transparent;
+    border: none;
+    padding: 15px;
+    border-bottom: 2px solid #3f4173;
+    margin: 0 25px;
+    font-size: 19px;
+    width: 35%;
+    outline: none;
+    color: #696ca9;
+    font-family: sans-serif;
+}
+#main #inputs input::placeholder {
+    color: #3f4173;
+}
+
+#main #inputs button {
+    background: transparent;
+    border: none;
+    padding: 15px 25px;
+    background: #262754;
+    margin: 0 25px;
+    font-size: 23px;
+    outline: none;
+    color: #9fa2e4;
+    cursor: pointer;
+}
+#main #inputs button:active {
+    background-color: #3f4173;
+}
+
+#main #price-list #item {
+    position: relative;
+    background: #2b2d63;
+    width: 20%;
+    padding: 15px;
+    margin: 2px;
+    overflow: hidden;
+    min-height: 250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    float: left;
+}
+#main #price-list #item #container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#main #price-list #item #container #length {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-weight: bold;
+}
+#main #price-list #item #content #price {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    color: greenyellow;
+    bottom: 10px;
+}
+
+
+#main #price-list #item img {
+    width: 200px;
+}
+
+#main #price-list.min #item {
+    display: flex;
+    float: none;
+    width: calc(90% - 48px);
+    min-height: auto;
+    align-content: flex-start;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 50px;
+}
+
+#main #price-list.min #item #container {
+    display: inline-block;
+    position: relative;
+    width: 15%;
+}
+#main #price-list.min #item img { 
+    width: 80px;
+    transform: translateY(10px);
+}
+
+#main #price-list.min #item #container #length {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+#main #price-list.min #item #content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+#main #price-list.min #item #content #price {
+    position: absolute;
+    left: 95%;
+}
+
+#main #filters,
+#main #message-request {
+    display: flex;
+    position: relative;
+    left: 50%;
+    transform: translateX(-10%);
+    width: 100%;
+}
+
+
+#main #message-request {
+    left: -60px;
+    transform: none;
+    display: block;
+    text-align: center;
+}
+
+#main #filters #item {
+    margin: 0 5px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+#price-list-filter {
+    display: none;
+    flex-direction: row;
+    justify-content: space-around;
+    background: #262754;
+    width: calc(85% + 35px);
+    position: relative;
+    left: 0;
+}
+
+#price-list-filter.active {
+    display: flex;
+}
+
+#price-list-filter > div {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+#price-list-filter #sort div {
+    background: #3a3c8e;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+#price-list-filter #sort div:active {
+    background: #4d4fb9;
+}
+
+
+#price-list-filter #sort h2 {
+    position: relative;
+    left: -60px;
+}
+#price-list-filter #length strong:last-child {
+    color: #62da20;
+}
+
+#price-list-filter #length strong {
+    font-weight: 100;
+    overflow: hidden;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 0 10px;
+}
+#price-list-filter #length strong#time-for-request {
+    min-width: 80px;
+    max-width: 120px;
+}
+
+
+
+#accounts-history-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    width: calc(100% - (5rem * 2) + 8px);
+    height: 100%;
+    min-height: 900px;
+    position: relative;
+    left: 10rem;
+}
+
+#accounts-history-container #search {
+    margin-left: 40%;
+}
+
+#accounts-history-container #search input {
+    background: transparent;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #fff;
+    display: block;
+    outline: none;
+    font-size: 24px;
+    margin-bottom: 50px;
+    padding: 15px;
+    text-align: center;
+}
+
+#accounts-history-container #list #item,
+#accounts-history-container #list #table {
+    display: flex;
+    background: #323458;
+    padding: 0;
+    width: 90%;
+    justify-content: space-between;
+    margin: 2px 0;
+}
+#accounts-history-container #list #item div,
+#accounts-history-container #list #table div {
+    border-right: 2px solid #6568a4;
+    padding: 15px 10px;
+    display: block;
+    width: 250px;
+    overflow: hidden;
+    overflow-x: auto;
+    font-size: 17px;
+    text-align: center;
+}
+#accounts-history-container #list #item div#price,
+#accounts-history-container #list #table div#price {
+    color: lightgreen;
+    border-right: none;
+}
+#accounts-history-container #list #item div#steamid,
+#accounts-history-container #list #table div#steamid {
+    cursor: pointer;
+}
+
+#accounts-history-container #list #item div:first-child,
+#accounts-history-container #list #table div:first-child {
+    width: 100px;
+}
+
+
+#notification {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: crimson;
+    padding: 15px;
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 70px;
+    z-index: 1;
+    box-shadow: 3px 4px 18px darkred;
+    transition: 0.25s;
+    border-top: 5px solid #fff;
+}
+
+#notification #context {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#notification #context a {
+    color: #ddd;
+    text-decoration: underline;
+}
+
+#notification .time {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 17px;
+    background: #fff;
+    padding: 0;
+    color: crimson;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+#notification h1  {
+    display: block;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    word-spacing: 5px;
+    font-weight: bold;
+}
+
+
+
+#settings-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: calc(100% - (5rem * 2) + 8px);
+    height: 100%;
+    min-height: 900px;
+    position: relative;
+    left: 10rem;
+}
+
+#settings-page h2,
+#settings-page p,
+#settings-page li,
+#settings-page ul  {
+    font-family: sans-serif;
+    font-weight: 100;
+    list-style: none;
+    text-decoration: none;
+}
+#settings-page h2 {
+    border-bottom: 1px solid #ddd;
+    width: 90%;
+    padding: 20px 0px;
+    margin-bottom: 2%;
+}
+#settings-page ul {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+#settings-page ul label {
+    background: #262754;
+    padding: 15px;
+    display: block;
+    width: calc(90% - (15px * 2));
+    justify-content: flex-start;
+    margin: 2px 0;
+    transition: 0.25s;
+}
+#settings-page ul label.active {
+    background: #50b850;
+}
+
+#settings-page ul label.error {
+    background-color: #A57F30;
+}
+
+#settings-page ul label li {
+    color: #ddd;
+    position: relative;
+}
+#settings-page ul label li p {
+    display: block;
+    color: #ddd;
+    font-weight: 100;
+    font-size: 24px;
+    user-select: none;
+}
+#settings-page ul label li input[type="checkbox"] {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    appearance: none;
+    background: transparent;
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+
+#settings-page ul label li h3 {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    outline: none;
+    width: auto;
+    border: none;
+    border-radius: 0;
+    font-size: 19px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: 100;
+}
+
+
+
+#settings-page ul label li input[type="text"],
+#settings-page ul label li button {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    outline: none;
+    width: 400px;
+    border: none;
+    /* border-bottom: 2px solid #4d4fb9; */
+    border-radius: 0;
+    font-size: 19px;
+    color: #fff;
+    padding: 5px 10px;
+}
+
+
+
+
+#settings-page ul label.error li input[type="text"] {
+    background-color: #fff;
+    color: black;
+    border-bottom: 2px solid #000;
+}
+#settings-page ul label li p i {
+    display: none;
+}
+#settings-page ul label.error li p i,
+#settings-page ul label.light li p i, 
+#settings-page ul label.default li p i,
+#settings-page ul label.active li p i {
+    display: inline-block;
+    margin-right: 25px;
+}
+#settings-page ul label li input[type="text"]#cfg-steamapi-key {
+    right: 5%;
+    text-align: center;
+    font-weight: bold;
+} 
+
+
+#settings-page ul label li button {
+    width: auto;
+    background: #92001c;
+    color: #fff;
+    right: 0;
+    padding: 5px 10px;
+    border-radius: 0px;
+    cursor: pointer;
+    border: none !important;
+    border-bottom: none;
+    top: 50%;
+    transform: translateY(-55%);
+}
+
+/* #settings-page ul label li input:checked {
+    background-color: #50b850;
+}
+#settings-page ul label li input::after {
+    content: '';
+}
+
+#settings-page ul label li input:checked:after {
+    content: '';
+    position: absolute;
+    display: block;
+    width: 50%;
+    height: 7px;
+    background: transparent;
+    border-left: 2px solid #ffffff;
+    border-bottom: 2px solid #ffffff;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-45deg);
+}
+#settings-page ul label li input:checked ~ #settings-page ul label{
+    background-color: red;
+} */

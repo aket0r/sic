@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <title>SIC - Steam Inventory Checker</title>
+</head>
+<body>
+    <nav id="navigation">
+        <div id="buttons-container">
+            <div class="btn">
+                <button id="home-page">
+                    <i class="fa fa-home" aria-hidden="true"></i>
+                </button>
+                <span class="title font-size-m">
+                    <p>
+                        Home
+                    </p>
+                </span>
+            </div>
+
+            <div class="btn">
+                <button id="update-data" class="first">
+                    <i class="fa fa-database" aria-hidden="true"></i>
+                </button>
+                <span class="title font-size-s">
+                    <p>
+                        Update Steam Price Data
+                    </p>
+                </span>
+            </div>
+
+            <div class="btn">
+                <button id="accounts-history">
+                    <i class="fa fa-history" aria-hidden="true"></i>
+                </button>
+                <span class="title font-size-m">
+                    <p>
+                        Accounts history
+                    </p>
+                </span>
+            </div>
+        </div>
+
+        <div id="buttons-container">
+            <div class="btn">
+                <button id="settings" class="first">
+                    <i class="fa fa-cogs" aria-hidden="true"></i>
+                </button>
+                <span class="title">
+                    <p>
+                        Settings
+                    </p>
+                </span>
+            </div>
+
+            <div class="btn">
+                <button id="reload-page" onclick="location.reload()">
+                    <i class="fa fa-refresh" aria-hidden="true"></i>
+                </button>
+                <span class="title">
+                    <p>
+                        Refresh
+                    </p>
+                </span>
+            </div>
+
+            <div class="btn">
+                <button id="close-app" onclick="steam.quit(0)">
+                    <i class="fa fa-power-off" aria-hidden="true"></i>
+                </button>
+                <span class="title">
+                    <p>
+                        Quit
+                    </p>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <div id="notification" class="hidden-animation">
+        <span class="time">6</span>
+        <h1>
+            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            Notification
+        </h1>
+        <p id="context">
+            text
+        </p>
+    </div>
+
+    <section id="main" class="main">
+        <div id="inputs">
+            <input type="text" id="user-id" placeholder="steamid">
+            <button id="get-data">Get</button>
+        </div>
+
+        <div id="message-request">
+            <p></p>
+        </div>
+
+        <div id="filters">
+            <div id="item" data-category="753">
+                <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/753/135dc1ac1cd9763dfc8ad52f4e880d2ac058a36c.jpg" alt="">
+            </div>
+            <div id="item" data-category="570">
+                <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/570/0bbb630d63262dd66d2fdd0f7d37e8661a410075.jpg" alt="">
+            </div>
+            <div id="item" data-category="730">
+                <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/730/69f7ebe2735c366c65c0b33dae00e12dc40edbe4.jpg" alt="">
+            </div>
+            <div id="item" data-category="440">
+                <img src="https://cdn.akamai.steamstatic.com/steamcommunity/public/images/apps/440/e3f595a92552da3d664ad00277fad2107345f743.jpg" alt="">
+            </div>
+        </div>
+
+        <div id="price-list-filter" class="main active">
+            <div id="sort">
+                <h2>Steam Helper</h2>
+                <div id="item" onclick="steam.sortingByName()" data-sorty-type="a-z">
+                    A-Z
+                </div>
+                <div id="item" data-sorty-type="price">
+                    Price
+                </div>
+                <div id="item" data-sorty-type="quality">
+                    Quality
+                </div>
+                <div id="item" class="min-size-filter">
+                    <i class="fa fa-bars" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div id="length">
+                <strong id="user-steam-id-value" title="steamid">-</strong>
+                <strong id="items-length-content" title="Items">-</strong>
+                <strong id="items-without-price" title="Items without price">-</strong>
+                <strong id="time-for-request" title="Time">-</strong>
+                <strong id="appid-text" title="appid">730</strong>
+                <strong id="user-inventory-price" title="Inventory price">-</strong>
+            </div>
+        </div>
+        <div id="price-list">
+        </div>
+    </section>
+
+    <section id="accounts-history-container" class="main hidden">
+        <div id="search">
+            <input type="text" id="accs-hist-value" placeholder="steamid, name">
+        </div>
+        <div id="list">
+            <div id="table">
+                <div id="index">ID</div>
+                <div id="username">User</div>
+                <div id="steamid">Steam ID</div>
+                <div id="items">Items</div>
+                <div id="date">Date</div>
+                <div id="time">Time</div>
+                <div id="appid">App ID</div>
+                <div id="price">Price</div>
+            </div>
+            <div id="container"></div>
+        </div>
+    </section>
+
+    <section id="settings-page" class="main hidden">
+        <h2>Настройки</h2>
+        <ul>
+            <label class="default">
+                <li>
+                    <p>
+                        <i class="fa fa-filter" aria-hidden="true"></i>
+                        Минималистичный стиль
+                    </p>
+                    <input type="checkbox" name="min-style" id="cfg-min-style">
+                </li>
+            </label>
+            <label class="default">
+                <li>
+                    <p>
+                        <i class="fa fa-retweet" aria-hidden="true"></i>
+                        Автоповтор-попыток
+                    </p>
+                    <input type="checkbox" name="autorepeat-fail-req" id="cfg-autorepeat-fail-req">
+                </li>
+            </label>
+            <label class="error" id="steam_api_key_label">
+                <li>
+                    <p>
+                        <i title="Please update Steam API key" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        Steam API KEY
+                    </p>
+                    <input type="text" name="steamapi-key" id="cfg-steamapi-key" placeholder="Enter Steam API key">
+                    <button id="reset-api-key">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </li>
+            </label>
+            <label class="light">
+                <li>
+                    <p>
+                        <i class="fa fa-database" aria-hidden="true"></i>
+                        Steam prices database (last update)
+                    </p>
+                    <h3 id="database-updated">-</h3>
+                </li>
+            </label>
+        </ul>
+    </section>
+
+    <script>
+        require("./render.js")
+    </script>
+    <script src="assets/js/config.js"></script>
+    <script src="assets/js/api.js"></script>
+    <script src="assets/js/animation.js"></script>
+</body>
+</html>
