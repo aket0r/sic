@@ -3,6 +3,10 @@
     src: url(../fonts/Barlow/Barlow-Regular.ttf);
 }
 
+:root {
+    --table-font-size: 16px;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -374,25 +378,35 @@ nav .btn span.title::before {
     display: flex;
     background: #323458;
     padding: 0;
-    width: 90%;
+    width: 95%;
     justify-content: space-between;
     margin: 2px 0;
 }
 #accounts-history-container #list #item div,
 #accounts-history-container #list #table div {
     border-right: 2px solid #6568a4;
-    padding: 15px 10px;
-    display: block;
-    width: 250px;
+    padding: 15px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     overflow: hidden;
     overflow-x: auto;
-    font-size: 17px;
+    font-size: var(--table-font-size);
     text-align: center;
+}
+
+
+
+#accounts-history-container #list #item div#retry,
+#accounts-history-container #list #table div#use {
+    border-right: none;
+    cursor: pointer;
+    color: lightblue;
 }
 #accounts-history-container #list #item div#price,
 #accounts-history-container #list #table div#price {
     color: lightgreen;
-    border-right: none;
 }
 #accounts-history-container #list #item div#steamid,
 #accounts-history-container #list #table div#steamid {
@@ -401,7 +415,7 @@ nav .btn span.title::before {
 
 #accounts-history-container #list #item div:first-child,
 #accounts-history-container #list #table div:first-child {
-    width: 100px;
+    width: 500px;
 }
 
 
@@ -554,6 +568,7 @@ nav .btn span.title::before {
 
 
 #settings-page ul label li input[type="text"],
+#settings-page ul label li input[type="number"],
 #settings-page ul label li button {
     position: absolute;
     right: 0;
@@ -570,9 +585,14 @@ nav .btn span.title::before {
     padding: 5px 10px;
 }
 
-
-
-
+#settings-page ul label li input#font-size {
+    border: 2px solid #4d4fb9;
+    width: 50px;
+    appearance: nono;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-progress-appearance: none;
+}
 #settings-page ul label.error li input[type="text"] {
     background-color: #fff;
     color: black;

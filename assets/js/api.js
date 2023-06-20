@@ -248,6 +248,7 @@ class Steam {
         for(let i = 0; i < users.length; i++) {
             const element = document.createElement("div");
             element.id = "item";
+            element.setAttribute("data-id", users[i].steamid)
             element.innerHTML = 
             `
                 <div id="index">${i+1}</div>
@@ -258,10 +259,16 @@ class Steam {
                 <div id="time">${users[i].time} s.</div>
                 <div id="appid">${users[i].appid}</div>
                 <div id="price">${users[i].price}</div>
+                <div id="retry"><i class="fa fa-refresh" aria-hidden="true"></i></div>
             `
             path.append(element);
         }
         console.timeEnd('loading')
+        const retryBtns = document.querySelectorAll("#retry");
+        retryBtns.forEach(btn => {
+            btn.addEventListener("click", this.refreshData);
+        })
+
         const profileBtns = document.querySelectorAll("#accounts-history-container #list #container #item #steamid");
         if(!profileBtns) return;
         profileBtns.forEach(button => {
@@ -270,6 +277,16 @@ class Steam {
                 shell.openExternal(url);
             }
         })
+    }
+
+    refreshData() {
+        d("#main").classList.remove("hidden");
+        d("#settings-page").classList.add("hidden");
+        d("#accounts-history-container").classList.add("hidden");
+    
+        const steamid = this.parentElement.dataset.id;
+        d("#user-id").value = steamid;
+        d("#get-data").click();
     }
 
     getUserItems(steamid) {

@@ -61,6 +61,13 @@ const usersList = document.querySelectorAll("#accounts-history-container #list #
 const checkboxes = document.querySelectorAll("input[type='checkbox']");
 window.addEventListener("load", function() {
     let dbupdate = this.localStorage.getItem(configuration.db.name);
+    let fontSize = this.localStorage.getItem("table-font-size");
+
+    if(fontSize) {
+        document.documentElement.style.cssText = `--table-font-size: ${fontSize}px`;
+        d("#font-size").value = fontSize;
+    }
+
     if(!dbupdate) {
         db.update();
     } else {
@@ -109,3 +116,12 @@ checkboxes.forEach(item => {
         }
     });
 })
+
+
+
+
+
+d("#font-size").addEventListener("input", function() {
+    document.documentElement.style.cssText = `--table-font-size: ${this.value}px`;
+    localStorage.setItem("table-font-size", this.value);
+});
