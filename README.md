@@ -1,4 +1,4 @@
-# SIC - Steam Inventory Checker
+# SIC - Steam Inventory Checker (beta)
 
 #### YouTube Guide
 <a href="https://www.youtube.com/watch?v=AI5u9EXgHR4" target="_blank">
