@@ -13,6 +13,8 @@ let notificationConfig = {
     time: 6
 }
 
+let ms = 0;
+let s  = 0;
 
 
 if(!configuration.STEAM_API.key) {
@@ -307,6 +309,8 @@ class Steam {
         steaminventory.getinventory(config.appid, steamid, '2').then(data => {
             // console.log(data);
             messageReqRes.innerHTML = "Loading user data...";
+            ms = 0;
+            s = 0;
             requestTime();
             itemsLengthContext.innerText = data.items.length;
             steamidContext.innerText = config.steamid;
@@ -376,8 +380,7 @@ const steamidContext = document.querySelector("#user-steam-id-value");
 const accountBalContext = document.querySelector("#user-inventory-price");
 const itemsWithoutPriceContext = document.querySelector("#items-without-price");
 
-let ms = 0;
-let s  = 0;
+
 const timerTxt = document.querySelector("#time-for-request");
 let request_timeout = null;
 function requestTime() {
