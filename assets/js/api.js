@@ -393,9 +393,6 @@ function requestTime() {
     request_timeout = setTimeout(requestTime, 100);
 }
 
-
-// 76561199129085426
-
 let priceCount = 0;
 
 // IMPORTANT VARIABLES
@@ -461,7 +458,7 @@ const prices = {
             createdAt: new Date().toLocaleString(),
             time: `${(s < 9) ? '0' + s : s}.${ms}`,
             items: prices.items.length,
-            itemsWithNoPrice: prices.itemsWithoutPrice
+            itemsWithoutPrice: prices.itemsWithoutPrice
         });
 
         const pricesContext = document.querySelectorAll("#item #price");
@@ -516,7 +513,6 @@ get.addEventListener("click", function() {
             if(!res) {
                 notification("Please update Steam API key\n <a href='https://steamcommunity.com/dev/apikey'>https://steamcommunity.com/dev/apikey</a>")
                 shell.beep();
-                // location.reload();
                 updateLinks();
                 return;
             }
