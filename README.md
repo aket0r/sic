@@ -1,7 +1,14 @@
 ## 📁 [SIC (Steam Inventory Checker)](https://github.com/aket0r/sic)
 
 <div align="center">
-
+<p align="center">
+  <img src="https://img.shields.io/badge/Platform-Electron-blue" />
+  <img src="https://img.shields.io/badge/Node.js-18.x-green" />
+  <img alt="Static Badge" src="https://img.shields.io/badge/Status-abandoned-red">
+  <img src="https://img.shields.io/badge/License-MIT-blue.svg" />
+  <img alt="Static Badge" src="https://img.shields.io/badge/SCSS-39.3%25-blue">
+</p>
+<br>
 **SIC** — приложение для просмотра и анализа инвентаря Steam.
 
 </div>
